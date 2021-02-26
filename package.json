@@ -1,0 +1,25 @@
+{
+  "name": "grit-ca-api",
+  "version": "0.1.0",
+  "description": "Grit Readers API Based on Clean Architecture",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gritreaders/grit-ca-api.git"
+  },
+  "keywords": [],
+  "author": "Rubén Esparza <rubenesparzasoto95@gmail.com> Carlos Guzmán <cguzman@expressingenieria.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gritreaders/grit-ca-api/issues"
+  },
+  "homepage": "https://github.com/gritreaders/grit-ca-api#readme",
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.1.0",
+    "prettier": "^2.2.1"
+  }
+}
