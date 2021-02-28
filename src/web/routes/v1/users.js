@@ -1,6 +1,8 @@
 'use strict';
 
-const usersRouter = (fastify, options, done) => {
+const userController = require('../../../controllers/userController');
+
+const usersRouter = async (fastify, options) => {
   const { user } = fastify.db.models;
 
   fastify.get('/users', async (request, reply) => {
@@ -47,8 +49,6 @@ const usersRouter = (fastify, options, done) => {
 
     return userDeleted;
   });
-
-  done();
 };
 
 module.exports = usersRouter;
