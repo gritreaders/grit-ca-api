@@ -8,6 +8,6 @@ module.exports = {
     SQLITE: 'sqlite',
   },
   SUPPORTED_ORM: {
-    INSTANCE: 'sequelize',
+    INSTANCE: 'db',
   },
 };

@@ -2,8 +2,6 @@
 
 require('dotenv-safe').config();
 
-const constants = require('./constants');
-
 module.exports = (() => {
   const environment = {
     app: {
@@ -17,6 +15,9 @@ module.exports = (() => {
       name: process.env.DATABASE_NAME,
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
+      encrypt: process.env.DATABASE_ENCRYPT,
+      trustedConnection: process.DATABASE_TRUSTED_CONNECTION,
+      requestTimeOut: process.env.DATABASE_REQUEST_TIME_OUT,
     },
   };
 

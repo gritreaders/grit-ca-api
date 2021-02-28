@@ -22,9 +22,11 @@
   "dependencies": {
     "dotenv-safe": "^8.2.0",
     "fastify": "^3.12.0",
-    "fastify-sequelize": "^1.0.4",
+    "fastify-autoload": "^3.5.2",
     "pg": "^8.5.1",
-    "pg-hstore": "^2.3.3"
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0",
+    "sequelize-fastify": "^1.0.5"
   },
   "devDependencies": {
     "eslint": "^7.20.0",

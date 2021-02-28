@@ -3,29 +3,44 @@
 const fastify = require('fastify')({
   logger: true,
 });
-const fsequelize = require('fastify-sequelize');
+const autoload = require('fastify-autoload');
+const path = require('path');
 
-const environment = require('./config/environment');
-const constants = require('./config/constants');
+const { environment, constants } = require('./config');
 
-console.log(environment.database);
-
-const sequelizeConfig = {
+fastify.register(require('sequelize-fastify'), {
   instance: constants.SUPPORTED_ORM.INSTANCE,
-  autoConnect: true,
-  dialect: environment.database.dialect,
-  database: environment.database.name,
-  username: environment.database.username,
-  password: environment.database.password,
+  sequelizeOptions: {
+    dialect: environment.database.dialect,
+    database: environment.database.name,
+    host: environment.database.host,
+    username: environment.database.username,
+    password: environment.database.password,
+  },
+  dialectOptions: {
+    encrypt: environment.database.encrypt,
+    trustedConnection: environment.database.trustedConnection,
+    requestTimeout: environment.database.requestTimeOut,
+  },
+});
+
+fastify.register(autoload, {
+  dir: path.join(__dirname, 'entities'),
+});
+
+fastify.register(autoload, {
+  dir: path.join(__dirname, 'web/routes/v1'),
+  options: { prefix: '/api/v1' },
+});
+
+const start = async () => {
+  try {
+    await fastify.listen(environment.app.port);
+    await fastify.db.authenticate();
+    await fastify.db.sync({ force: environment.app.dev });
+  } catch (err) {
+    fastify.log.error(err);
+  }
 };
 
-fastify.register(fsequelize, sequelizeConfig);
-fastify.register(require('./web/routes/index.js'));
-
-fastify.listen(environment.app.port, function (err, address) {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-  fastify.log.info(`server listening on ${address}`);
-});
+start();
