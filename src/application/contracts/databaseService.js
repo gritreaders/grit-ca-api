@@ -1,11 +1,13 @@
 'use strict';
 
 module.exports = class DatabaseService {
-  constructor() {
-    this.userRepository = null;
+  constructor() {}
+
+  init() {
+    return Promise.reject(new Error('not implemented'));
   }
 
-  initDatabase() {
+  connect() {
     return Promise.reject(new Error('not implemented'));
   }
 };

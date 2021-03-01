@@ -1,33 +1,23 @@
 'use strict';
 
-const User = require('../../../entities/user');
-
-const constants = require('../../../config/constants');
-
-module.exports = (UserRepository) => {
-  async function execute(
-    firstName,
-    lastName,
-    email,
-    password,
-    avatarUrl = constants.DEFAULT_VALUES.AVATAR_URL,
-    isActive = constants.DEFAULT_VALUES.IS_ACTIVE
-  ) {
-    if (!firstName || !lastName || !email || !password) {
-      throw new Error('validations failed');
+module.exports = (userRepository) => {
+  async function execute(userEntity) {
+    if (
+      !userEntity.firstName ||
+      !userEntity.lastName ||
+      !userEntity.email ||
+      !userEntity.password
+    ) {
+      return { message: 'valued not valid' };
     }
 
-    const user = await UserRepository.getByEmail(email);
+    const searchedUser = await userRepository.getByEmail(userEntity.email);
 
-    if (user) {
-      throw new Error('email already exists');
+    if (searchedUser) {
+      return { message: 'email already register' };
     }
 
-    let newUser = new User(firstName, lastName, avatarUrl, isActive);
-
-    const createdUser = await UserRepository.add(newUser);
-
-    return createdUser;
+    return await userRepository.add(userEntity);
   }
 
   return {

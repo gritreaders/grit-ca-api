@@ -3,7 +3,6 @@
 const autoload = require('fastify-autoload');
 const path = require('path');
 
-const PostgresUserRepository = require('./postgresUserRepository');
 const DatabaseService = require('../../../application/contracts/databaseService');
 
 const environment = require('../../../config/environment');
@@ -12,11 +11,10 @@ const constants = require('../../../config/constants');
 module.exports = class PostgresDatabaseService extends DatabaseService {
   constructor() {
     super();
-    this.userRepository = new PostgresUserRepository();
   }
 
-  async initDatabase(dependency) {
-    dependency.register(require('sequelize-fastify'), {
+  async init(server) {
+    server.register(require('sequelize-fastify'), {
       instance: constants.SUPPORTED_ORM.INSTANCE,
       sequelizeOptions: {
         dialect: environment.database.dialect,
@@ -32,13 +30,15 @@ module.exports = class PostgresDatabaseService extends DatabaseService {
       },
     });
 
-    dependency.register(autoload, {
+    server.register(autoload, {
       dir: path.join(__dirname, 'sequelize/models'),
     });
   }
 
-  async initConnection(fastify) {
-    await fastify.db.authenticate();
-    await fastify.db.sync({ force: environment.app.dev });
+  async connect(server) {
+    await server.db.authenticate();
+    await server.db.sync({
+      force: environment.app.dev,
+    });
   }
 };

@@ -1,16 +1,18 @@
 'use strict';
 
 module.exports = class UserRepository {
-  constructor() {}
+  constructor(userModel) {
+    this.userModel = userModel;
+  }
 
-  add(userInstance) {
+  add(userEntity) {
     return Promise.reject(new Error('not implemented'));
   }
 
-  update(userInstance) {
+  update(userEntity) {
     return Promise.reject(new Error('not implemented'));
   }
-  delete(userInstance) {
+  delete(userEntity) {
     return Promise.reject(new Error('not implemented'));
   }
 
