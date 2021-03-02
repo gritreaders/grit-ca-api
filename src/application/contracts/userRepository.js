@@ -5,14 +5,14 @@ module.exports = class UserRepository {
     this.userModel = userModel;
   }
 
-  add(userEntity) {
+  add(user) {
     return Promise.reject(new Error('not implemented'));
   }
 
-  update(userEntity) {
+  update(user) {
     return Promise.reject(new Error('not implemented'));
   }
-  delete(userEntity) {
+  delete(user) {
     return Promise.reject(new Error('not implemented'));
   }
 

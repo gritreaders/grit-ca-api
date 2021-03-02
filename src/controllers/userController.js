@@ -1,13 +1,13 @@
 'use strict';
 
-const UserEntity = require('../entities/userEntity');
+const User = require('../entities/user');
 
-const addUserCommand = require('../application/use_cases/users/addUser');
-const updateUserCommand = require('../application/use_cases/users/updateUser');
-const deleteUserCommand = require('../application/use_cases/users/deleteUser');
-const getUserByIdCommand = require('../application/use_cases/users/getUserById');
-const getUserByEmailCommand = require('../application/use_cases/users/getUserByEmail');
-const getUserAllCommand = require('../application/use_cases/users/getUserAll');
+const addUserCommand = require('../application/use_cases/user/addUser');
+const updateUserCommand = require('../application/use_cases/user/updateUser');
+const deleteUserCommand = require('../application/use_cases/user/deleteUser');
+const getUserByIdCommand = require('../application/use_cases/user/getUserById');
+const getUserByEmailCommand = require('../application/use_cases/user/getUserByEmail');
+const getUserAllCommand = require('../application/use_cases/user/getUserAll');
 
 module.exports = (userRepository) => {
   const addUser = async (request, reply) => {
@@ -22,19 +22,12 @@ module.exports = (userRepository) => {
 
     try {
       const response = await addUserCommand(userRepository).execute(
-        new UserEntity(
-          firstName,
-          lastName,
-          email,
-          password,
-          avatarUrl,
-          isActive
-        )
+        new User(firstName, lastName, email, password, avatarUrl, isActive)
       );
 
-      reply.send(response);
+      return reply.send(response);
     } catch (err) {
-      reply.send(err);
+      return reply.send(err);
     }
   };
 
@@ -52,19 +45,12 @@ module.exports = (userRepository) => {
     try {
       const response = await updateUserCommand(userRepository).execute(
         id,
-        new UserEntity(
-          firstName,
-          lastName,
-          email,
-          password,
-          avatarUrl,
-          isActive
-        )
+        new User(firstName, lastName, email, password, avatarUrl, isActive)
       );
 
-      reply.send(response);
+      return reply.send(response);
     } catch (err) {
-      reply.send(err);
+      return reply.send(err);
     }
   };
 
@@ -74,9 +60,9 @@ module.exports = (userRepository) => {
     try {
       const response = await deleteUserCommand(userRepository).execute(id);
 
-      reply.send(response);
+      return reply.send(response);
     } catch (err) {
-      reply.send(err);
+      return reply.send(err);
     }
   };
 
@@ -86,9 +72,9 @@ module.exports = (userRepository) => {
     try {
       const response = await getUserByIdCommand(userRepository).execute(id);
 
-      reply.send(response);
+      return reply.send(response);
     } catch (err) {
-      reply.send(err);
+      return reply.send(err);
     }
   };
 
@@ -100,9 +86,9 @@ module.exports = (userRepository) => {
         email
       );
 
-      reply.send(response);
+      return reply.send(response);
     } catch (err) {
-      reply.send(err);
+      return reply.send(err);
     }
   };
 
@@ -110,9 +96,9 @@ module.exports = (userRepository) => {
     try {
       const response = await getUserAllCommand(userRepository).execute();
 
-      reply.send(response);
+      return reply.send(response);
     } catch (err) {
-      reply.send(err);
+      return reply.send(err);
     }
   };
 

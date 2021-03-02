@@ -8,37 +8,35 @@ module.exports = class PostgresUserRepository extends UserRepository {
     this.userModel = userModel;
   }
 
-  async add(userEntity) {
-    return this.userModel.create(userEntity);
+  async add(user) {
+    return await this.userModel.create(user);
   }
 
-  async update(userId, userEntity) {
+  async update(userId, user) {
     const searchedUser = await this.userModel.findByPk(userId);
 
-    searchedUser.firstName = userEntity.firstName || searchedUser.firstName;
-    searchedUser.lastName = userEntity.lastName || searchedUser.lastName;
-    searchedUser.email = userEntity.email || searchedUser.email;
-    searchedUser.password = userEntity.password || searchedUser.password;
-    searchedUser.avatarUrl = userEntity.avatarUrl || searchedUser.avatarUrl;
-    searchedUser.isActive = userEntity.isActive || searchedUser.isActive;
+    searchedUser.firstName = user.firstName;
+    searchedUser.lastName = user.lastName;
+    searchedUser.email = user.email;
+    searchedUser.avatarUrl = user.avatarUrl;
+    searchedUser.isActive = user.isActive;
 
-    return await searchedUser.update();
+    return await searchedUser.save();
   }
 
   async delete(userId) {
-    const searchedUser = await this.userModel.findByPk(userId);
-    return await searchedUser.destroy();
+    return await this.userModel.destroy({ where: { userId } });
   }
 
   async getById(userId) {
-    return this.userModel.findByPk(userId);
+    return await this.userModel.findByPk(userId);
   }
 
   async getByEmail(email) {
-    return this.userModel.findOne({ where: { email: email } });
+    return await this.userModel.findOne({ where: { email: email } });
   }
 
   async getAll() {
-    return this.userModel.findAll();
+    return await this.userModel.findAll();
   }
 };

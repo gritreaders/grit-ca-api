@@ -27,7 +27,7 @@ module.exports = async (fastify, options) => {
       unique: true,
     },
     password: {
-      type: DataTypes.STRING(32),
+      type: DataTypes.STRING(60),
       allowNull: false,
     },
     avatarUrl: {

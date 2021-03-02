@@ -15,4 +15,7 @@ module.exports = {
       'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
     IS_ACTIVE: false,
   },
+  SECURITY: {
+    SALT_OF_ENCRYPTION: 10,
+  },
 };
