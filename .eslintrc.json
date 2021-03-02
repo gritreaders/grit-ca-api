@@ -1,7 +1,9 @@
 {
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "rules": {
-      "no-console": "warn"
+      "no-console": "warn",
+      "strict": "error",
+      "arrow-body-style": ["error", "always"]
   },
   "parserOptions": {
       "ecmaVersion": 10

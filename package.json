@@ -2,8 +2,10 @@
   "name": "grit-ca-api",
   "version": "0.1.0",
   "description": "Grit Readers API Based on Clean Architecture",
-  "main": "src/app.js",
+  "main": "src/index.js",
   "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,9 +19,21 @@
     "url": "https://github.com/gritreaders/grit-ca-api/issues"
   },
   "homepage": "https://github.com/gritreaders/grit-ca-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv-safe": "^8.2.0",
+    "fastify": "^3.12.0",
+    "fastify-autoload": "^3.5.2",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0",
+    "sequelize-fastify": "^1.0.5"
+  },
   "devDependencies": {
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
   }
 }
