@@ -22,11 +22,7 @@ module.exports = class PostgresDatabaseService extends DatabaseService {
         host: environment.database.host,
         username: environment.database.username,
         password: environment.database.password,
-      },
-      dialectOptions: {
-        encrypt: environment.database.encrypt,
-        trustedConnection: environment.database.trustedConnection,
-        requestTimeout: environment.database.requestTimeOut,
+        native: environment.database.native,
       },
     });
 
