@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Grit Readers API Based on Clean Architecture",
   "main": "src/index.js",
+  "engines": { 
+    "node": "14",
+    "npm": "7"
+  },
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
@@ -26,6 +30,7 @@
     "fastify-autoload": "^3.5.2",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
+    "pg-native": "^3.0.0",
     "sequelize": "^6.5.0",
     "sequelize-fastify": "^1.0.5"
   },
