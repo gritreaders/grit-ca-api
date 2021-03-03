@@ -10,7 +10,7 @@ const createServer = async () => {
   server.register(require('./routes'));
 
   server.start = async () => {
-    await server.listen(environment.app.port);
+    await server.listen(environment.app.port, environment.app.host);
     serviceLocator.DatabaseService.connect(server);
   };
 
