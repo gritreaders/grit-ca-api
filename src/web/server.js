@@ -6,12 +6,12 @@ const serviceLocator = require('../config/serviceLocator');
 const createServer = async () => {
   const server = require('fastify')({ logger: true });
 
-  serviceLocator.DatabaseService.init(server);
-  server.register(require('./routes'));
+  await serviceLocator.DatabaseService.init(server);
+  await server.register(require('./routes'));
 
   server.start = async () => {
     await server.listen(environment.app.port, environment.app.host);
-    serviceLocator.DatabaseService.connect(server);
+    await serviceLocator.DatabaseService.connect(server);
   };
 
   return server;

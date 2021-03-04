@@ -14,7 +14,7 @@ module.exports = class PostgresDatabaseService extends DatabaseService {
   }
 
   async init(server) {
-    server.register(require('sequelize-fastify'), {
+    await server.register(require('sequelize-fastify'), {
       instance: constants.SUPPORTED_ORM.INSTANCE,
       sequelizeOptions: {
         dialect: environment.database.dialect,
@@ -26,7 +26,7 @@ module.exports = class PostgresDatabaseService extends DatabaseService {
       },
     });
 
-    server.register(autoload, {
+    await server.register(autoload, {
       dir: path.join(__dirname, 'sequelize/models'),
     });
   }

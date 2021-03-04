@@ -1,12 +1,14 @@
+/* eslint-disable no-magic-numbers */
 'use strict';
 
 const { DataTypes } = require('sequelize');
 const constants = require('../../../../../config/constants');
 
+// eslint-disable-next-line no-unused-vars
 module.exports = async (fastify, options) => {
   const { db } = fastify;
 
-  db.define(
+  await db.define(
     'user',
     {
       userId: {

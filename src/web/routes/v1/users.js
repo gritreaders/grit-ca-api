@@ -4,7 +4,8 @@ const userController = require('../../../controllers/userController');
 
 const PostgresUserRepository = require('../../../frameworks/persistence/orm/postgresUserRepository');
 
-const usersRouter = async (fastify, options) => {
+// eslint-disable-next-line no-unused-vars
+const usersRouter = (fastify, options) => {
   const controller = userController(
     new PostgresUserRepository(fastify.db.models.user)
   );

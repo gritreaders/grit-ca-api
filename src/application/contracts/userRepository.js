@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 module.exports = class UserRepository {
@@ -12,6 +13,7 @@ module.exports = class UserRepository {
   update(user) {
     return Promise.reject(new Error('not implemented'));
   }
+
   delete(user) {
     return Promise.reject(new Error('not implemented'));
   }
