@@ -1,9 +1,14 @@
 {
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "rules": {
-      "no-console": "warn",
       "strict": "error",
-      "arrow-body-style": ["error", "always"]
+      "arrow-body-style": ["error", "always"],
+      "prefer-arrow-callback": "error",
+      "no-console": "error",
+      "no-unused-vars": "error",
+      "require-await": "error",
+      "no-return-await": "error",
+      "no-magic-numbers": "error"
   },
   "parserOptions": {
       "ecmaVersion": 10

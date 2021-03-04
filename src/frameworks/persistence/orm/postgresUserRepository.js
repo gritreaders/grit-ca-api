@@ -9,7 +9,8 @@ module.exports = class PostgresUserRepository extends UserRepository {
   }
 
   async add(user) {
-    return await this.userModel.create(user);
+    const addedUser = await this.userModel.create(user);
+    return addedUser;
   }
 
   async update(userId, user) {
@@ -21,22 +22,30 @@ module.exports = class PostgresUserRepository extends UserRepository {
     searchedUser.avatarUrl = user.avatarUrl;
     searchedUser.isActive = user.isActive;
 
-    return await searchedUser.save();
+    const savedUser = await searchedUser.save();
+
+    return savedUser;
   }
 
   async delete(userId) {
-    return await this.userModel.destroy({ where: { userId } });
+    const deletedUser = await this.userModel.destroy({ where: { userId } });
+    return deletedUser;
   }
 
   async getById(userId) {
-    return await this.userModel.findByPk(userId);
+    const searchedUser = await this.userModel.findByPk(userId);
+    return searchedUser;
   }
 
   async getByEmail(email) {
-    return await this.userModel.findOne({ where: { email: email } });
+    const searchedUser = await this.userModel.findOne({
+      where: { email: email },
+    });
+    return searchedUser;
   }
 
   async getAll() {
-    return await this.userModel.findAll();
+    const searchedUsers = await this.userModel.findAll();
+    return searchedUsers;
   }
 };
