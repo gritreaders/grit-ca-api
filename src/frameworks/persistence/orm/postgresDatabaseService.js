@@ -34,7 +34,7 @@ module.exports = class PostgresDatabaseService extends DatabaseService {
   async connect(server) {
     await server.db.authenticate();
     await server.db.sync({
-      force: environment.app.dev,
+      force: environment.database.sync,
     });
   }
 };
