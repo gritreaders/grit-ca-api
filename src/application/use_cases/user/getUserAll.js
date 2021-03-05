@@ -5,7 +5,7 @@ module.exports = (userRepository) => {
     let searchedUsers = await userRepository.getAll();
 
     searchedUsers = searchedUsers.map((searchedUser) => {
-      delete searchedUser.dataValues.password;
+      // delete searchedUser.password;
 
       return searchedUser;
     });

@@ -28,7 +28,7 @@ module.exports = (userRepository) => {
 
     const updatedUser = await userRepository.update(userId, searchedUser);
 
-    delete updatedUser.dataValues.password;
+    // delete updatedUser.dataValues.password;
 
     return updatedUser;
   }

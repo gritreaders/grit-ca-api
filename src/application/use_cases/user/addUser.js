@@ -18,7 +18,7 @@ module.exports = (userRepository) => {
 
     const addedUser = await userRepository.add(user);
 
-    delete addedUser.dataValues.password;
+    // delete addedUser.dataValues.password;
 
     return addedUser;
   }

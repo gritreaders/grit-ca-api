@@ -12,7 +12,7 @@ module.exports = (userRepository) => {
       return { message: 'user not found' };
     }
 
-    delete searchedUser.dataValues.password;
+    // delete searchedUser.dataValues.password;
 
     return searchedUser;
   }
