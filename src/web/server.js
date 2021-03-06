@@ -7,6 +7,8 @@ const createServer = async () => {
   const server = require('fastify')({ logger: true });
 
   serviceLocator.DatabaseService.init(server);
+
+  server.register(require('../frameworks/common/authenticateJwt'));
   server.register(require('./routes'));
 
   server.start = async () => {
