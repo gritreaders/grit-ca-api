@@ -9,6 +9,7 @@ module.exports = (() => {
       dev: process.env.NODE_ENV === 'development',
       port: process.env.PORT,
       host: process.env.HOST,
+      jwt_secret: process.env.JWT_SECRET,
     },
     database: {
       dialect: process.env.DATABASE_DIALECT,
