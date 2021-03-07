@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 'use strict';
 
 const User = require('../entities/user');
@@ -25,7 +26,7 @@ module.exports = (userRepository) => {
         new User(firstName, lastName, email, password, avatarUrl, isActive)
       );
 
-      return reply.send(response);
+      return reply.code(201).send(response);
     } catch (err) {
       return reply.send(err);
     }
@@ -71,8 +72,7 @@ module.exports = (userRepository) => {
 
     try {
       const response = await getUserByIdCommand(userRepository).execute(id);
-
-      return reply.send(response);
+      return reply.code(200).send(response);
     } catch (err) {
       return reply.send(err);
     }
@@ -86,7 +86,7 @@ module.exports = (userRepository) => {
         email
       );
 
-      return reply.send(response);
+      return reply.code(200).send(response);
     } catch (err) {
       return reply.send(err);
     }
@@ -96,7 +96,7 @@ module.exports = (userRepository) => {
     try {
       const response = await getUserAllCommand(userRepository).execute();
 
-      return reply.send(response);
+      return reply.code(200).send(response);
     } catch (err) {
       return reply.send(err);
     }

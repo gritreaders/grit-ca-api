@@ -25,13 +25,9 @@ describe('updateUser', () => {
     });
     describe('user not found', () => {
       it("give an user id not registered, then the function must return an object with value 'user not found' in property message", async () => {
-        const messageExpected = { message: 'user not found' };
-
-        const messageReceived = await updateUserCommand(userRepository).execute(
-          getNextUserId()
-        );
-
-        expect(messageReceived).toStrictEqual(messageExpected);
+        await expect(
+          updateUserCommand(userRepository).execute(getNextUserId())
+        ).rejects.toThrow();
       });
     });
     describe('user not updated', () => {

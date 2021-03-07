@@ -21,7 +21,7 @@ const createServer = async () => {
     maxAge: 86400,
     optionsSuccessStatus: true,
   });
-
+  await server.register(require('../frameworks/common/authenticateJwt'));
   await server.register(require('./routes'));
 
   server.start = async () => {

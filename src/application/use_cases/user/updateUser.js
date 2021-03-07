@@ -1,6 +1,7 @@
 'use strict';
 
 const { hash } = require('../../../frameworks/common/encryptor');
+const apiError = require('../../../frameworks/common/apiError');
 
 module.exports = (userRepository) => {
   async function execute(userId, user) {
@@ -11,7 +12,8 @@ module.exports = (userRepository) => {
     let searchedUser = await userRepository.getById(userId);
 
     if (!searchedUser) {
-      return { message: 'user not found' };
+      // eslint-disable-next-line no-magic-numbers
+      throw new apiError(404, 'User not Found');
     }
 
     searchedUser.firstName = user.firstName || searchedUser.firstName;

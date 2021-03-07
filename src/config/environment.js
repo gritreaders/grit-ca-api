@@ -11,6 +11,7 @@ module.exports = (() => {
         process.env.DATABASE_HOST === 'localhost',
       port: process.env.PORT,
       host: process.env.HOST,
+      jwt_secret: process.env.JWT_SECRET,
     },
     database: {
       dialect: process.env.DATABASE_DIALECT,

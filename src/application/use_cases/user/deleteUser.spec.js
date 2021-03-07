@@ -21,13 +21,10 @@ describe('deleteUser', () => {
     });
     it(`give an userId not found, then the function must return an object with value 'user not found' in property message`, async () => {
       const notExistsUserId = getNextUserId();
-      const messageExpected = { message: 'user not found' };
 
-      const messageReceived = await deleteUserCommand(userRepository).execute(
-        notExistsUserId
-      );
-
-      expect(messageReceived).toStrictEqual(messageExpected);
+      await expect(
+        deleteUserCommand(userRepository).execute(notExistsUserId)
+      ).rejects.toThrow();
     });
     it(`give an userId, then the function must return an object with value 'user deleted' in property message`, async () => {
       const { userId } = getFirstUser();
