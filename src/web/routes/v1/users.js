@@ -1,13 +1,13 @@
 'use strict';
 
 const userController = require('../../../controllers/userController');
-const PostgresUserRepository = require('../../../frameworks/persistence/orm/postgresUserRepository');
 
-// Schemas
-const userSchema = require('../schemas/Users/userSchema');
-const getUserByIdSchema = require('../schemas/Users/getUserByIdSchema');
-const updateUserSchema = require('../schemas/Users/updateUserSchema');
-const deleteUserSchema = require('../schemas/Users/deleteUserSchema');
+const userSchema = require('../schemas/users/userSchema');
+const getUserByIdSchema = require('../schemas/users/getUserByIdSchema');
+const updateUserSchema = require('../schemas/users/updateUserSchema');
+const deleteUserSchema = require('../schemas/users/deleteUserSchema');
+
+const PostgresUserRepository = require('../../../frameworks/persistence/orm/postgresUserRepository');
 
 // eslint-disable-next-line no-unused-vars
 const usersRouter = async (fastify, options) => {
@@ -15,15 +15,19 @@ const usersRouter = async (fastify, options) => {
     new PostgresUserRepository(fastify.db.models.user)
   );
 
-  await fastify.post('/users', { schema: userSchema }, controller.addUser);
+  await fastify.post(
+    '/users',
+    { preValidation: [fastify.authenticate], schema: userSchema },
+    controller.addUser
+  );
   await fastify.put(
     '/users/:id',
-    { schema: updateUserSchema },
+    { preValidation: [fastify.authenticate], schema: updateUserSchema },
     controller.updateUser
   );
   await fastify.delete(
     '/users/:id',
-    { schema: deleteUserSchema },
+    { preValidation: [fastify.authenticate], schema: deleteUserSchema },
     controller.deleteUser
   );
   await fastify.get(
@@ -31,14 +35,7 @@ const usersRouter = async (fastify, options) => {
     { schema: getUserByIdSchema },
     controller.getUserById
   );
-  await fastify.get('/users/getUserByEmail/:email', controller.getUserByEmail);
-  await fastify.get(
-    '/users',
-    {
-      preValidation: [fastify.authenticate],
-    },
-    controller.getUserAll
-  );
+  await fastify.get('/users', controller.getUserAll);
 };
 
 module.exports = usersRouter;

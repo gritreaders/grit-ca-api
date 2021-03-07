@@ -2,7 +2,8 @@
 
 const userController = require('../../../controllers/userController');
 const authController = require('../../../controllers/authController');
-const signUpUserSchema = require('../schemas/Users/userSchema');
+
+const signUpUserSchema = require('../schemas/users/userSchema');
 const signInUserSchema = require('../schemas/auth/signInUserSchema');
 
 const PostgresUserRepository = require('../../../frameworks/persistence/orm/postgresUserRepository');
