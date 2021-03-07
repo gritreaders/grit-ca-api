@@ -19,7 +19,9 @@ const createServer = async () => {
       'Authorization',
     ],
     maxAge: 86400,
+    preflightContinue: true,
     optionsSuccessStatus: true,
+    preflight: false,
   });
 
   await server.register(require('../frameworks/common/authenticateJwt'));
