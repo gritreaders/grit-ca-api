@@ -11,6 +11,7 @@ module.exports = (userRepository) => {
     const searchedUser = await userRepository.getById(userId);
 
     if (!searchedUser) {
+      // eslint-disable-next-line no-magic-numbers
       throw new apiError(404, 'User Not Found');
     }
 

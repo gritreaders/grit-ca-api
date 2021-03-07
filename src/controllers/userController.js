@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 'use strict';
 
 const User = require('../entities/user');

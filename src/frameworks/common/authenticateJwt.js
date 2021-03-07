@@ -1,14 +1,16 @@
 'use strict';
 
-const environment = require('../../config/environment');
 const fastifyPlugin = require('fastify-plugin');
 
-module.exports = fastifyPlugin(async function (fastify, opts) {
-  fastify.register(require('fastify-jwt'), {
-    secret: environment.app.jwt_secret,
+const environment = require('../../config/environment');
+
+// eslint-disable-next-line no-unused-vars
+module.exports = fastifyPlugin(async (fastify, opts) => {
+  await fastify.register(require('fastify-jwt'), {
+    secret: environment.app.jwt.secret,
   });
 
-  fastify.decorate('authenticate', async function (request, reply) {
+  await fastify.decorate('authenticate', async (request, reply) => {
     try {
       await request.jwtVerify();
     } catch (err) {

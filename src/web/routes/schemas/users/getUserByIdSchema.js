@@ -6,6 +6,7 @@ const paramsJsonSchema = {
   required: ['id'],
   properties: { id: { type: 'number' } },
 };
+
 const responseJsonSchema = {
   '2xx': {
     type: 'object',

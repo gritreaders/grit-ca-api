@@ -8,6 +8,7 @@ const paramsJsonSchema = {
     id: { type: 'number' },
   },
 };
+
 const bodyJsonSchema = {
   type: 'object',
   required: ['firstName', 'lastName'],
@@ -19,6 +20,7 @@ const bodyJsonSchema = {
     password: { type: 'string', minLength: 8 },
   },
 };
+
 const responseJsonSchema = {
   '2xx': {
     type: 'object',
