@@ -6,14 +6,9 @@ const apiError = require('../frameworks/common/apiError');
 const getUserByEmailCommand = require('../application/use_cases/user/getUserByEmail');
 
 module.exports = (userRepository, fastify) => {
-  /* -------------------------------------------------------------------------- */
-  /*                                   Sign In                                  */
-  /* -------------------------------------------------------------------------- */
-
   const signIn = async (request, reply) => {
     const { email, password } = request.body;
     try {
-      // does the user exist?
       const user = await getUserByEmailCommand(userRepository).execute(email);
 
       if (!user.message) {
@@ -22,26 +17,24 @@ module.exports = (userRepository, fastify) => {
         if (passwordIsValid) {
           const token = fastify.jwt.sign(payload);
           payload.token = token;
+          // eslint-disable-next-line no-magic-numbers
           return reply.code(200).send(payload);
         }
+        // eslint-disable-next-line no-magic-numbers
+        throw new apiError(401, 'wrong credentials');
       } else {
+        // eslint-disable-next-line no-magic-numbers
         throw new apiError(401, user.message);
       }
     } catch (err) {
       return reply.send(err);
     }
   };
+  // eslint-disable-next-line no-unused-vars
+  const activateAccount = async (request, reply) => {};
+  // eslint-disable-next-line no-unused-vars
+  const recoveryAccount = async (request, reply) => {};
 
-  /* -------------------------------------------------------------------------- */
-  /*                              Activate Account                              */
-  /* -------------------------------------------------------------------------- */
-  const activateAccount = async (request, repply) => {};
-
-  /* -------------------------------------------------------------------------- */
-  /*                               RecoveryAccount                              */
-  /* -------------------------------------------------------------------------- */
-
-  const recoveryAccount = async (request, repply) => {};
   return {
     signIn,
     activateAccount,

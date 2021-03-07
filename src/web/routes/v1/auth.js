@@ -2,11 +2,13 @@
 
 const userController = require('../../../controllers/userController');
 const authController = require('../../../controllers/authController');
-const signUpUserSchema = require('../schemas/Users/userSchema');
+
+const signUpUserSchema = require('../schemas/users/userSchema');
 const signInUserSchema = require('../schemas/auth/signInUserSchema');
 
 const PostgresUserRepository = require('../../../frameworks/persistence/orm/postgresUserRepository');
 
+// eslint-disable-next-line no-unused-vars
 const authRouter = async (fastify, options) => {
   const controllerUser = userController(
     new PostgresUserRepository(fastify.db.models.user)
@@ -16,20 +18,20 @@ const authRouter = async (fastify, options) => {
     fastify
   );
 
-  fastify.post(
+  await fastify.post(
     '/auth/signup',
     { schema: signUpUserSchema },
     controllerUser.addUser
   );
-  fastify.post(
+  await fastify.post(
     '/auth/signin',
     { schema: signInUserSchema },
     controllerAuth.signIn
   );
 
-  fastify.post('/auth/recovery', controllerAuth.recoveryAccount);
+  await fastify.post('/auth/recovery', controllerAuth.recoveryAccount);
 
-  fastify.post('/auth/activate/:id', controllerAuth.activateAccount);
+  await fastify.post('/auth/activate/:id', controllerAuth.activateAccount);
 };
 
 module.exports = authRouter;

@@ -10,11 +10,11 @@ module.exports = class UserRepository {
     return Promise.reject(new Error('not implemented'));
   }
 
-  update(user) {
+  update(userId, user) {
     return Promise.reject(new Error('not implemented'));
   }
 
-  delete(user) {
+  delete(userId) {
     return Promise.reject(new Error('not implemented'));
   }
 

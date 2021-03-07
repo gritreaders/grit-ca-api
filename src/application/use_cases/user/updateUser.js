@@ -12,6 +12,7 @@ module.exports = (userRepository) => {
     let searchedUser = await userRepository.getById(userId);
 
     if (!searchedUser) {
+      // eslint-disable-next-line no-magic-numbers
       throw new apiError(404, 'User not Found');
     }
 
@@ -29,7 +30,7 @@ module.exports = (userRepository) => {
 
     const updatedUser = await userRepository.update(userId, searchedUser);
 
-    delete updatedUser.dataValues.password;
+    // delete updatedUser.dataValues.password;
 
     return updatedUser;
   }
