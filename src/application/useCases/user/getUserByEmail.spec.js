@@ -6,7 +6,7 @@ const faker = require('faker');
 const {
   UserRepositoryMock,
   getFirstUser,
-} = require('../../../utils/mocks/UserRepositoryMock');
+} = require('../../../mocks/UserRepositoryMock');
 const getUserByEmailCommand = require('./getUserByEmail');
 
 describe('getUserByEmail', () => {

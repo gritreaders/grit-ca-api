@@ -7,12 +7,12 @@ const {
   getNextUserId,
   getFirstUser,
   UserRepositoryMock,
-} = require('../../../utils/mocks/UserRepositoryMock');
+} = require('../../../mocks/UserRepositoryMock');
 
 const addUserCommand = require('./addUser');
 const User = require('../../../entities/user');
 
-const { hash } = require('../../../frameworks/common/encryptor');
+const { hash } = require('../../../utils/encryptor');
 
 describe('addUser', () => {
   const userRepositoryMock = new UserRepositoryMock();

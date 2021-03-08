@@ -1,6 +1,6 @@
 'use strict';
 
-const apiError = require('../../../frameworks/common/apiError');
+const apiError = require('../../../utils/apiError');
 
 module.exports = (userRepository) => {
   async function execute(userId) {

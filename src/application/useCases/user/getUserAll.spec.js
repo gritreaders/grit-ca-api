@@ -4,7 +4,7 @@
 const {
   UserRepositoryMock,
   usersMock,
-} = require('../../../utils/mocks/UserRepositoryMock');
+} = require('../../../mocks/UserRepositoryMock');
 
 const getUserAllCommand = require('./getUserAll');
 

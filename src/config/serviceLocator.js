@@ -2,7 +2,7 @@
 
 const PostgresDatabaseService = require('../frameworks/persistence/orm/postgresDatabaseService');
 
-const constants = require('./constants');
+const constants = require('../utils/constants');
 const environment = require('./environment');
 
 const buildBeans = () => {

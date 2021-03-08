@@ -3,12 +3,12 @@
 
 const User = require('../entities/user');
 
-const addUserCommand = require('../application/use_cases/user/addUser');
-const updateUserCommand = require('../application/use_cases/user/updateUser');
-const deleteUserCommand = require('../application/use_cases/user/deleteUser');
-const getUserByIdCommand = require('../application/use_cases/user/getUserById');
-const getUserByEmailCommand = require('../application/use_cases/user/getUserByEmail');
-const getUserAllCommand = require('../application/use_cases/user/getUserAll');
+const addUserCommand = require('../application/useCases/user/addUser');
+const updateUserCommand = require('../application/useCases/user/updateUser');
+const deleteUserCommand = require('../application/useCases/user/deleteUser');
+const getUserByIdCommand = require('../application/useCases/user/getUserById');
+const getUserByEmailCommand = require('../application/useCases/user/getUserByEmail');
+const getUserAllCommand = require('../application/useCases/user/getUserAll');
 
 module.exports = (userRepository) => {
   const addUser = async (request, reply) => {
