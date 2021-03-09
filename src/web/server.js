@@ -18,8 +18,6 @@ const createServer = async () => {
       'Accept',
       'Authorization',
     ],
-    maxAge: 86400,
-    optionsSuccessStatus: true,
   });
 
   await server.register(require('../frameworks/common/authenticateJwt'));
