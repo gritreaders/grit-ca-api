@@ -9,20 +9,15 @@ const createServer = async () => {
   await serviceLocator.DatabaseService.init(server);
 
   await server.register(require('fastify-cors'), {
-    origin: false,
-    // origin: '*',
-    // methods: ['GET', 'HEAD', 'OPTIONS', 'POST', 'PUT', 'DELETE'],
-    // allowedHeaders: [
-    //   'Content-Type',
-    //   'Content-Language',
-    //   'Accept-Language',
-    //   'Accept',
-    //   'Authorization',
-    // ],
-    // maxAge: 86400,
-    // preflightContinue: true,
-    // optionsSuccessStatus: true,
-    // preflight: false,
+    origin: '*',
+    methods: ['GET', 'HEAD', 'OPTIONS', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: [
+      'Content-Type',
+      'Content-Language',
+      'Accept-Language',
+      'Accept',
+      'Authorization',
+    ],
   });
 
   await server.register(require('../frameworks/common/authenticateJwt'));
