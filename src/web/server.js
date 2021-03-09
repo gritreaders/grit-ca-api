@@ -21,8 +21,6 @@ const createServer = async () => {
       'Accept',
       'Authorization',
     ],
-    maxAge: 86400,
-    optionsSuccessStatus: true,
   });
 
   await server.register(autoload, {
