@@ -11,7 +11,7 @@ const {
   getNextUserId,
   getFirstUser,
   UserRepositoryMock,
-} = require('../../../utils/mocks/UserRepositoryMock');
+} = require('../../../mocks/UserRepositoryMock');
 
 describe('updateUser', () => {
   const userRepository = new UserRepositoryMock();

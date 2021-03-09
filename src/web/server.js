@@ -1,5 +1,8 @@
 'use strict';
 
+const autoload = require('fastify-autoload');
+const path = require('path');
+
 const environment = require('../config/environment');
 const serviceLocator = require('../config/serviceLocator');
 
@@ -20,9 +23,14 @@ const createServer = async () => {
     ],
   });
 
-  await server.register(require('../frameworks/common/authenticateJwt'));
+  await server.register(autoload, {
+    dir: path.join(__dirname, 'plugins'),
+  });
 
-  await server.register(require('./routes'));
+  await server.register(autoload, {
+    dir: path.join(__dirname, 'routes/v1'),
+    options: { prefix: '/api/v1' },
+  });
 
   server.start = async () => {
     await server.listen(environment.app.port, environment.app.host);

@@ -1,9 +1,9 @@
 'use strict';
 
-const { compare } = require('../frameworks/common/encryptor');
-const apiError = require('../frameworks/common/apiError');
+const { compare } = require('../utils/encryptor');
+const apiError = require('../utils/apiError');
 
-const getUserByEmailCommand = require('../application/use_cases/user/getUserByEmail');
+const getUserByEmailCommand = require('../application/useCases/user/getUserByEmail');
 
 module.exports = (userRepository, fastify) => {
   const signIn = async (request, reply) => {

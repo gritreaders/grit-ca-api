@@ -1,7 +1,7 @@
 'use strict';
 
-const { hash } = require('../../../frameworks/common/encryptor');
-const apiError = require('../../../frameworks/common/apiError');
+const { hash } = require('../../../utils/encryptor');
+const apiError = require('../../../utils/apiError');
 
 module.exports = (userRepository) => {
   async function execute(userId, user) {

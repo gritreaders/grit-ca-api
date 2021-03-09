@@ -5,7 +5,7 @@ const {
   getFirstUser,
   getNextUserId,
   UserRepositoryMock,
-} = require('../../../utils/mocks/UserRepositoryMock');
+} = require('../../../mocks/UserRepositoryMock');
 
 const deleteUserCommand = require('./deleteUser');
 

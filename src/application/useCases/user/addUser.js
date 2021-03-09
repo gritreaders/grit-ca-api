@@ -1,6 +1,6 @@
 'use strict';
 
-const { hash } = require('../../../frameworks/common/encryptor');
+const { hash } = require('../../../utils/encryptor');
 
 module.exports = (userRepository) => {
   async function execute(user) {

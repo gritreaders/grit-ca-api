@@ -2,7 +2,7 @@
 'use strict';
 
 const { DataTypes } = require('sequelize');
-const constants = require('../../../../../config/constants');
+const constants = require('../../../../utils/constants');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = async (fastify, options) => {

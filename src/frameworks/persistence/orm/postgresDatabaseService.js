@@ -6,7 +6,7 @@ const path = require('path');
 const DatabaseService = require('../../../application/contracts/databaseService');
 
 const environment = require('../../../config/environment');
-const constants = require('../../../config/constants');
+const constants = require('../../../utils/constants');
 
 module.exports = class PostgresDatabaseService extends DatabaseService {
   constructor() {
@@ -27,7 +27,7 @@ module.exports = class PostgresDatabaseService extends DatabaseService {
     });
 
     await server.register(autoload, {
-      dir: path.join(__dirname, 'sequelize/models'),
+      dir: path.join(__dirname, '/models'),
     });
   }
 
