@@ -1,7 +1,7 @@
 'use strict';
 
 const { compare } = require('../utils/encryptor');
-const apiError = require('../utils/apiError');
+const ApiError = require('../utils/ApiError');
 
 const getUserByEmailCommand = require('../application/useCases/user/getUserByEmail');
 
@@ -21,10 +21,10 @@ module.exports = (userRepository, fastify) => {
           return reply.code(200).send(payload);
         }
         // eslint-disable-next-line no-magic-numbers
-        throw new apiError(401, 'wrong credentials');
+        throw new ApiError(401, 'wrong credentials');
       } else {
         // eslint-disable-next-line no-magic-numbers
-        throw new apiError(401, user.message);
+        throw new ApiError(401, user.message);
       }
     } catch (err) {
       return reply.send(err);

@@ -3,10 +3,11 @@
 const autoload = require('fastify-autoload');
 const path = require('path');
 
-const DatabaseService = require('../../../application/contracts/databaseService');
+const DatabaseService = require('../../../application/contracts/DatabaseService');
+
+const constants = require('../../../utils/constants');
 
 const environment = require('../../../config/environment');
-const constants = require('../../../utils/constants');
 
 module.exports = class PostgresDatabaseService extends DatabaseService {
   constructor() {
@@ -14,16 +15,21 @@ module.exports = class PostgresDatabaseService extends DatabaseService {
   }
 
   async init(server) {
+    const sequelizeOptions = {
+      dialect: environment.database.dialect,
+      database: environment.database.name,
+      host: environment.database.host,
+      username: environment.database.username,
+      password: environment.database.password,
+    };
+
+    if (environment.database.native) {
+      sequelizeOptions.native = environment.database.native;
+    }
+
     await server.register(require('sequelize-fastify'), {
       instance: constants.SUPPORTED_ORM.INSTANCE,
-      sequelizeOptions: {
-        dialect: environment.database.dialect,
-        database: environment.database.name,
-        host: environment.database.host,
-        username: environment.database.username,
-        password: environment.database.password,
-        native: environment.database.native,
-      },
+      sequelizeOptions,
     });
 
     await server.register(autoload, {

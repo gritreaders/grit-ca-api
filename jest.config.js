@@ -1,12 +1,7 @@
 'use strict';
 
 module.exports = {
-  collectCoverageFrom: [
-    'src/application/use_cases/**/*.{js,jsx,ts,tsx}',
-    // 'src/**/*.{js,jsx,ts,tsx}',
-    // '!src/config/environments.js',
-    // '!src/entities/*',
-  ],
+  collectCoverageFrom: ['src/application/useCases/**/*.{js,jsx,ts,tsx}'],
   coverageThreshold: {
     global: {
       branches: 70,
