@@ -1,6 +1,6 @@
 'use strict';
 
-const UserRepository = require('../../../application/contracts/userRepository');
+const UserRepository = require('../../../application/contracts/UserRepository');
 
 module.exports = class PostgresUserRepository extends UserRepository {
   constructor(userModel) {

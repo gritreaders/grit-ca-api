@@ -1,6 +1,6 @@
 'use strict';
 
-const apiError = require('../../../utils/apiError');
+const ApiError = require('../../../utils/ApiError');
 
 module.exports = (userRepository) => {
   async function execute(userId) {
@@ -12,7 +12,7 @@ module.exports = (userRepository) => {
 
     if (!searchedUser) {
       // eslint-disable-next-line no-magic-numbers
-      throw new apiError(404, 'User Not Found');
+      throw new ApiError(404, 'User Not Found');
     }
 
     await userRepository.delete(userId);

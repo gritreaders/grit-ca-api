@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers */
 'use strict';
 
-const User = require('../entities/user');
+const User = require('../entities/User');
 
 const addUserCommand = require('../application/useCases/user/addUser');
 const updateUserCommand = require('../application/useCases/user/updateUser');

@@ -3,7 +3,7 @@
 
 const faker = require('faker');
 
-const User = require('../../../entities/user');
+const User = require('../../../entities/User');
 
 const updateUserCommand = require('./updateUser');
 

@@ -10,7 +10,7 @@ const {
 } = require('../../../mocks/UserRepositoryMock');
 
 const addUserCommand = require('./addUser');
-const User = require('../../../entities/user');
+const User = require('../../../entities/User');
 
 const { hash } = require('../../../utils/encryptor');
 

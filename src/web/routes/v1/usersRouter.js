@@ -7,7 +7,7 @@ const getUserByIdSchema = require('../schemas/users/getUserByIdSchema');
 const updateUserSchema = require('../schemas/users/updateUserSchema');
 const deleteUserSchema = require('../schemas/users/deleteUserSchema');
 
-const PostgresUserRepository = require('../../../frameworks/persistence/orm/postgresUserRepository');
+const PostgresUserRepository = require('../../../frameworks/persistence/orm/PostgresUserRepository');
 
 // eslint-disable-next-line no-unused-vars
 const usersRouter = async (fastify, options) => {
@@ -31,7 +31,7 @@ const usersRouter = async (fastify, options) => {
     controller.deleteUser
   );
   await fastify.get(
-    '/users/getUserById/:id',
+    '/users/:id',
     { schema: getUserByIdSchema },
     controller.getUserById
   );

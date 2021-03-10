@@ -7,6 +7,7 @@ const {
   UserRepositoryMock,
   getFirstUser,
 } = require('../../../mocks/UserRepositoryMock');
+
 const getUserByEmailCommand = require('./getUserByEmail');
 
 describe('getUserByEmail', () => {

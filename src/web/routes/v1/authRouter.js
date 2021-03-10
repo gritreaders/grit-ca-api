@@ -1,12 +1,12 @@
 'use strict';
 
-const userController = require('../../../controllers/userController');
-const authController = require('../../../controllers/authController');
-
 const signUpUserSchema = require('../schemas/users/userSchema');
 const signInUserSchema = require('../schemas/auth/signInUserSchema');
 
-const PostgresUserRepository = require('../../../frameworks/persistence/orm/postgresUserRepository');
+const userController = require('../../../controllers/userController');
+const authController = require('../../../controllers/authController');
+
+const PostgresUserRepository = require('../../../frameworks/persistence/orm/PostgresUserRepository');
 
 // eslint-disable-next-line no-unused-vars
 const authRouter = async (fastify, options) => {
@@ -19,12 +19,12 @@ const authRouter = async (fastify, options) => {
   );
 
   await fastify.post(
-    '/auth/signup',
+    '/auth/signUp',
     { schema: signUpUserSchema },
     controllerUser.addUser
   );
   await fastify.post(
-    '/auth/signin',
+    '/auth/signIn',
     { schema: signInUserSchema },
     controllerAuth.signIn
   );
