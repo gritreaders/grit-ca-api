@@ -2,10 +2,11 @@
 
 const userController = require('../../../controllers/userController');
 
-const userSchema = require('../schemas/users/userSchema');
-const getUserByIdSchema = require('../schemas/users/getUserByIdSchema');
-const updateUserSchema = require('../schemas/users/updateUserSchema');
-const deleteUserSchema = require('../schemas/users/deleteUserSchema');
+const userSchema = require('../schemas/user/userSchema');
+const getUserByIdSchema = require('../schemas/user/getUserByIdSchema');
+const getUserAllSchema = require('../schemas/user/getUserAllSchema');
+const updateUserSchema = require('../schemas/user/updateUserSchema');
+const deleteUserSchema = require('../schemas/user/deleteUserSchema');
 
 const PostgresUserRepository = require('../../../frameworks/persistence/orm/PostgresUserRepository');
 
@@ -35,7 +36,11 @@ const usersRouter = async (fastify, options) => {
     { schema: getUserByIdSchema },
     controller.getUserById
   );
-  await fastify.get('/users', controller.getUserAll);
+  await fastify.get(
+    '/users',
+    { schema: getUserAllSchema },
+    controller.getUserAll
+  );
 };
 
 module.exports = usersRouter;

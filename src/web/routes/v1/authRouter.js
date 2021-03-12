@@ -1,6 +1,6 @@
 'use strict';
 
-const signUpUserSchema = require('../schemas/users/userSchema');
+const signUpUserSchema = require('../schemas/user/userSchema');
 const signInUserSchema = require('../schemas/auth/signInUserSchema');
 
 const userController = require('../../../controllers/userController');

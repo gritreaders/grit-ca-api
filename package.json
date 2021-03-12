@@ -44,6 +44,7 @@
     "dotenv-safe": "^8.2.0",
     "fastify": "^3.13.0",
     "fastify-autoload": "^3.5.2",
+    "fastify-compress": "^3.4.2",
     "fastify-cors": "^5.2.0",
     "fastify-jwt": "^2.3.0",
     "pg": "^8.5.1",

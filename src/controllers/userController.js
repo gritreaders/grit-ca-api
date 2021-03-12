@@ -93,8 +93,12 @@ module.exports = (userRepository) => {
   };
 
   const getUserAll = async (request, reply) => {
+    const { page, limit } = request.query;
     try {
-      const response = await getUserAllCommand(userRepository).execute();
+      const response = await getUserAllCommand(userRepository).execute(
+        page,
+        limit
+      );
 
       return reply.code(200).send(response);
     } catch (err) {
