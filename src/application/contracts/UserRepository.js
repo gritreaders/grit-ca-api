@@ -26,7 +26,11 @@ module.exports = class UserRepository {
     return Promise.reject(new Error('not implemented'));
   }
 
-  getAll() {
+  getAll(page, limit) {
+    return Promise.reject(new Error('not implemented'));
+  }
+
+  getCount() {
     return Promise.reject(new Error('not implemented'));
   }
 };

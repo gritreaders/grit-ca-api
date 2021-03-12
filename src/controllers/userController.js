@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers */
 'use strict';
 
-const User = require('../entities/user');
+const User = require('../entities/User');
 
 const addUserCommand = require('../application/useCases/user/addUser');
 const updateUserCommand = require('../application/useCases/user/updateUser');
@@ -93,8 +93,12 @@ module.exports = (userRepository) => {
   };
 
   const getUserAll = async (request, reply) => {
+    const { page, limit } = request.query;
     try {
-      const response = await getUserAllCommand(userRepository).execute();
+      const response = await getUserAllCommand(userRepository).execute(
+        page,
+        limit
+      );
 
       return reply.code(200).send(response);
     } catch (err) {

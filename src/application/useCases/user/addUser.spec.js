@@ -10,7 +10,7 @@ const {
 } = require('../../../mocks/UserRepositoryMock');
 
 const addUserCommand = require('./addUser');
-const User = require('../../../entities/user');
+const User = require('../../../entities/User');
 
 const { hash } = require('../../../utils/encryptor');
 
@@ -18,7 +18,7 @@ describe('addUser', () => {
   const userRepositoryMock = new UserRepositoryMock();
 
   describe('adding user', () => {
-    it(`gite an user with invalid values, then the function must return an object with the value 'value not valid' in message property`, async () => {
+    it(`give an user with invalid values, then the function must return an object with the value 'value not valid' in message property`, async () => {
       const userExpected = new User(
         undefined,
         null,

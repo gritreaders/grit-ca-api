@@ -1,6 +1,8 @@
 /* eslint-disable no-magic-numbers */
 'use strict';
 
+const UserRepository = require('../application/contracts/UserRepository');
+
 const usersMock = [
   {
     userId: 1,
@@ -462,9 +464,13 @@ const getFirstUser = () => {
   return usersMock[0];
 };
 
-class UserRepositoryMock {
+const getCount = () => {
+  return usersMock.length;
+};
+
+class UserRepositoryMock extends UserRepository {
   constructor(userModel) {
-    this.userModel = userModel;
+    super(userModel);
   }
 
   add(user) {
@@ -512,8 +518,12 @@ class UserRepositoryMock {
     return Promise.resolve(searchedUser);
   }
 
-  getAll() {
-    return Promise.resolve(usersMock);
+  getAll(page, limit) {
+    return Promise.resolve(usersMock.slice(page, limit));
+  }
+
+  getCount() {
+    return Promise.resolve(getCount());
   }
 }
 
@@ -521,5 +531,6 @@ module.exports = {
   usersMock,
   getNextUserId,
   getFirstUser,
+  getCount,
   UserRepositoryMock,
 };

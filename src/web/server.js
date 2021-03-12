@@ -23,6 +23,8 @@ const createServer = async () => {
     ],
   });
 
+  await server.register(require('fastify-compress'));
+
   await server.register(autoload, {
     dir: path.join(__dirname, 'plugins'),
   });

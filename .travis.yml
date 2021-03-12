@@ -12,11 +12,6 @@ cache:
 git:
   depth: 3
 
-branches:
-  only:
-    - main
-    - develop
-
 install:
   - npm install
 

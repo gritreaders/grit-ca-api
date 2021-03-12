@@ -1,11 +1,10 @@
 'use strict';
 
-const UserRepository = require('../../../application/contracts/userRepository');
+const UserRepository = require('../../../application/contracts/UserRepository');
 
 module.exports = class PostgresUserRepository extends UserRepository {
   constructor(userModel) {
-    super();
-    this.userModel = userModel;
+    super(userModel);
   }
 
   async add(user) {
@@ -44,8 +43,16 @@ module.exports = class PostgresUserRepository extends UserRepository {
     return searchedUser;
   }
 
-  async getAll() {
-    const searchedUsers = await this.userModel.findAll();
+  async getAll(page, limit) {
+    const searchedUsers = await this.userModel.findAll({
+      offset: page,
+      limit: limit,
+    });
     return searchedUsers;
+  }
+
+  async getCount() {
+    const count = await this.userModel.count();
+    return count;
   }
 };
