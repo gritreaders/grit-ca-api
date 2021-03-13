@@ -2,7 +2,7 @@
 'use strict';
 
 const UserRepository = require('../application/contracts/UserRepository');
-
+// FIXME: change for .json file
 const usersMock = [
   {
     userId: 1,

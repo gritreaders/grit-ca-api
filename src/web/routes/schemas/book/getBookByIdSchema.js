@@ -14,6 +14,7 @@ const responseJsonSchema = {
       bookId: { type: 'number' },
       title: { type: 'string' },
       content: { type: 'string' },
+      shortContent: { type: 'string' },
       publisher: { type: 'string' },
       publisherAt: { type: 'string', format: 'date' },
       pages: { type: 'number' },

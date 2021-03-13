@@ -9,6 +9,14 @@ const responseJsonSchema = {
   '2xx': {
     type: 'object',
     properties: {
+      meta: {
+        type: 'object',
+        properties: {
+          statusCode: { type: 'number' },
+          error: { type: 'boolean' },
+          message: { type: 'string' },
+        },
+      },
       previous: {
         type: 'object',
         properties: {
@@ -31,6 +39,7 @@ const responseJsonSchema = {
             bookId: { type: 'number' },
             title: { type: 'string' },
             content: { type: 'string' },
+            shortContent: { type: 'string' },
             publisher: { type: 'string' },
             publisherAt: { type: 'string', format: 'date' },
             pages: { type: 'number' },
@@ -51,9 +60,12 @@ const responseJsonSchema = {
     message: { type: 'string' },
   },
   '5xx': {
-    statusCode: { type: 'number' },
-    error: { type: 'string' },
-    message: { type: 'string' },
+    meta: {
+      statusCode: { type: 'number' },
+      error: { type: 'string' },
+      message: { type: 'string' },
+      details: { type: 'string' },
+    },
   },
 };
 

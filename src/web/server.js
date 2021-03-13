@@ -6,6 +6,8 @@ const path = require('path');
 const environment = require('../config/environment');
 const serviceLocator = require('../config/serviceLocator');
 
+const errorHandler = require('../utils/errorHandler');
+
 const createServer = async () => {
   const server = require('fastify')({ logger: true });
 
@@ -33,6 +35,8 @@ const createServer = async () => {
     dir: path.join(__dirname, 'routes/v1'),
     options: { prefix: '/api/v1' },
   });
+
+  await server.setErrorHandler(errorHandler);
 
   server.start = async () => {
     await server.listen(environment.app.port, environment.app.host);

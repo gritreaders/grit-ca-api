@@ -2,43 +2,71 @@
 'use strict';
 
 module.exports = (repository) => {
-  const paginate = async (page, limit) => {
-    let paginatedResults = {
-      previous: {},
-      next: {},
-      data: [],
-    };
+  const validatePageAndLimit = (page, limit) => {
+    return page > 0 && limit > 0;
+  };
 
-    const rowsCount = await repository.getCount();
-
+  const calculateStartIndex = (page, limit) => {
     let startIndex = 0;
-    let endIndex = rowsCount;
 
-    if (page > 0 && limit > 0) {
+    if (validatePageAndLimit(page, limit)) {
       startIndex = (page - 1) * limit;
-      endIndex = page * limit;
-
-      if (startIndex > 0) {
-        paginatedResults.previous = {
-          page: page - 1,
-          limit: limit,
-        };
-      }
-
-      if (endIndex < rowsCount) {
-        paginatedResults.next = {
-          page: page + 1,
-          limit: limit,
-        };
-      }
     }
 
-    paginatedResults.data = await repository.getAll(startIndex, endIndex);
+    return startIndex;
+  };
 
-    return paginatedResults;
+  const calculateEndIndex = async (page, limit) => {
+    let endIndex = await repository.getCount();
+
+    if (validatePageAndLimit(page, limit)) {
+      endIndex = page * limit;
+    }
+
+    return endIndex;
+  };
+
+  const paginatedData = async (page, limit) => {
+    const startIndex = await calculateStartIndex(page, limit);
+    const endIndex = await calculateEndIndex(page, limit);
+    const data = await repository.getAll(startIndex, endIndex);
+
+    return data;
+  };
+
+  const previousPage = async (page, limit) => {
+    let previous = {};
+
+    const startIndex = await calculateStartIndex(page, limit);
+
+    if (startIndex > 0) {
+      previous = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+
+    return previous;
+  };
+
+  const nextPage = async (page, limit) => {
+    let next = {};
+
+    const endIndex = await calculateEndIndex(page, limit);
+
+    if (endIndex < (await repository.getCount())) {
+      next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+
+    return next;
   };
 
   return {
-    paginate,
+    paginatedData,
+    previousPage,
+    nextPage,
   };
 };

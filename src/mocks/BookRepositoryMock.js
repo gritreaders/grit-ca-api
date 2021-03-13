@@ -2,7 +2,7 @@
 'use strict';
 
 const BookRepository = require('../application/contracts/BookRepository');
-
+// FIXME: change for .json file
 const booksMock = [
   {
     bookId: 1,

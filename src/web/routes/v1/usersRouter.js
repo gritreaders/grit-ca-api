@@ -33,12 +33,12 @@ const usersRouter = async (fastify, options) => {
   );
   await fastify.get(
     '/users/:id',
-    { schema: getUserByIdSchema },
+    { preValidation: [fastify.authenticate], schema: getUserByIdSchema },
     controller.getUserById
   );
   await fastify.get(
     '/users',
-    { schema: getUserAllSchema },
+    { preValidation: [fastify.authenticate], schema: getUserAllSchema },
     controller.getUserAll
   );
 };
