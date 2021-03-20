@@ -10,6 +10,10 @@ module.exports = class BookRepository {
     return Promise.reject(new Error('not implemented'));
   }
 
+  getBookByTitle(title) {
+    return Promise.reject(new Error('not implemented'));
+  }
+
   getAll(page, limit) {
     return Promise.reject(new Error('not implemented'));
   }

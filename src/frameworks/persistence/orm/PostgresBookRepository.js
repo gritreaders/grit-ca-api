@@ -7,8 +7,20 @@ module.exports = class PostgresUserRepository extends BookRepository {
     super(bookModel);
   }
 
+  async addBook(book) {
+    const addedBook = await this.bookModel.create(book);
+    return addedBook;
+  }
+
   async getById(bookId) {
     const searchedBook = await this.bookModel.findByPk(bookId);
+    return searchedBook;
+  }
+
+  async getBookByTitle(title) {
+    const searchedBook = await this.bookModel.findOne({
+      where: { title: title },
+    });
     return searchedBook;
   }
 

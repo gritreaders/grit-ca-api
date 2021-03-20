@@ -1,7 +1,7 @@
 'use strict';
 
-const autoload = require('fastify-autoload');
 const path = require('path');
+const autoload = require('fastify-autoload');
 
 const environment = require('../config/environment');
 const serviceLocator = require('../config/serviceLocator');
@@ -24,6 +24,8 @@ const createServer = async () => {
   });
 
   await server.register(require('fastify-compress'));
+
+  await server.register(require('../utils/scheduler'));
 
   await server.register(autoload, {
     dir: path.join(__dirname, 'plugins'),
